@@ -1,0 +1,12 @@
+{
+    "name": "rokibul/filter-widget",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Getonnet\\": "includes/"
+        },
+        "files": [
+            "includes/functions.php"
+        ]
+    }
+}

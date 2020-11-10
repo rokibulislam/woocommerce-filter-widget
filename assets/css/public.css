@@ -1,0 +1,106 @@
+ul.child {
+	display: none;
+}
+
+.btn-filter {
+	cursor: pointer;
+	/*border: none;*/
+}
+
+.tor-filter {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.child {
+	list-style: none;
+}
+
+.tor-widget h4 {
+	margin-top: 10px;
+}
+
+
+ul.tor-tag {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.tor-tag > li {
+	margin-right: 5px;
+}
+
+
+.tor-tag > li > label > input[type=checkbox] {
+    position   : absolute;
+    visibility : hidden;
+    display: none;
+}
+.tor-tag > li > label {
+	width: 80px;
+    height: 30px;
+    border: 1px solid #d4d4d4;
+    cursor: pointer;
+    padding: 5px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.tor-tag > li > input[type=checkbox]:checked + label {
+    background: red;
+    color: #fff;
+}
+
+.tor-apply-filters {
+	background: green;
+}
+
+.tor-reset-filters  {
+	background: red;
+}
+
+.btn-filter, .btn-filter:active, .btn-filter:hover {
+	color: white;
+	border: none;
+	padding: 12px 15px;
+}
+
+.filter-submit {
+	display: flex;
+    justify-content: space-between;
+	margin-top: 15px;
+}
+
+
+.tor-loading {
+	display: flex;
+	justify-content: center;
+	top: 50%;
+    left: 50%;
+    position: fixed;
+    z-index: 9999;
+}
+
+.tor-loading:after {
+	content: "";
+	width: 50px;
+	height: 50px;
+	/*background: #f9f9f9;*/
+	/*background: #009579;*/
+	border: 10px solid #f3f3f3;
+	border-top-color: #3498db;
+	/*border-bottom-color: #3498db;*/
+	opacity: 0.5;
+	border-radius: 50%;
+	animation: tor-loading 2s ease infinite alternate;
+}
+
+@keyframes tor-loading {
+	to {
+		opacity: 1;
+		/*transform: scale(1.75);*/
+		transform: rotate(1turn);
+	}
+}
