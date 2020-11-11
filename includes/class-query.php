@@ -10,6 +10,38 @@ class Query_Manager {
 	private $provider          = null;
 	private $is_ajax_filter    = null;
 
+	public function is_ajax_filter() {
+
+		if ( null !== $this->is_ajax_filter ) {
+			return $this->is_ajax_filter;
+		}
+
+		if ( ! wp_doing_ajax() ) {
+			$this->is_ajax_filter = false;
+			return $this->is_ajax_filter;
+		}
+
+		$allowed_actions = array(
+			'tor_filters',
+			'tor_filters_refresh_controls',
+			'tor_filters_refresh_controls_reload'
+		);
+
+		if ( ! isset( $_REQUEST['action'] ) || ! in_array( $_REQUEST['action'], $allowed_actions ) ) {
+			$this->is_ajax_filter = false;
+			return $this->is_ajax_filter;
+		}
+
+		$this->is_ajax_filter = true;
+
+		return $this->is_ajax_filter;
+	}
+
+	public function set_is_ajax_filter() {
+		$this->is_ajax_filter = true;
+	}
+
+
 	public function get_default_queries() {
 		return $this->_default_query;
 	}
@@ -96,6 +128,11 @@ class Query_Manager {
 	public function add_tax_query_var( $value, $key ) {
 		$tax_query = isset( $this->_query['tax_query'] ) ? $this->_query['tax_query'] : array();
 
+
+		$tax_default_query = [
+			'relation' => 'OR'
+		];
+
 		if ( ! isset( $tax_query[ $key ] ) ) {
 
 			$tax_query[] = array(
@@ -105,7 +142,7 @@ class Query_Manager {
 			);
 		}
 
-		$this->_query['tax_query'] = $tax_query;
+		$this->_query['tax_query'] = array_merge( $tax_default_query, $tax_query );
 	}
 
 	public function add_meta_query_var( $value, $key ) {

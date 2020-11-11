@@ -172,7 +172,8 @@
 				$('.tor-loading').show();	
 			},
 			success: function(response) {
-
+				console.log(response);
+				$('.ast-woocommerce-container').html(response.content);
 			},
 			complete: function() {
 				$('.tor-loading').hide();	

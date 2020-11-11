@@ -82,3 +82,19 @@ function tor_get_prodcut_attributes() {
 
 	return $product_attributes;
 }
+
+add_filter( 'woocommerce_pagination_args', 'tor_pagination' );
+
+
+function tor_pagination( $items ) {
+	if ( tor_Filters()->query->is_ajax_filter() ) {
+
+		if( $items['current'] > 1 ) {
+			$items['base'] = $_SERVER['HTTP_REFERER'];
+		}	else {
+			$items['base'] = $_SERVER['HTTP_REFERER'] .$items['format'];
+		}
+	}
+
+	return $items;
+}
